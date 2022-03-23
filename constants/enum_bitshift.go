@@ -14,8 +14,32 @@ const (
 	YB
 )
 
-func main() {
+func file() {
 	fileSize := 4000000000.
 	fmt.Printf("%.2fGB\n", fileSize/GB)
 	fmt.Printf("%.2fMB", fileSize/MB)
+}
+
+const (
+	isAdmin = 1 << iota
+	isHQ
+	isFinance
+
+	regionA
+	regionB
+	regionC
+)
+
+func rolesCheck() {
+	// fast AF
+	var roles byte = isAdmin | isFinance | regionB
+	fmt.Printf("%b\n", roles)
+
+	fmt.Printf("Is admin? %v\n", roles&isAdmin == isAdmin)
+	fmt.Printf("Is regionA? %v", roles&regionA == regionA)
+}
+
+func main() {
+	file()
+	rolesCheck()
 }
