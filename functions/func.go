@@ -10,6 +10,19 @@ func main() {
 	passingCopy(text)
 	passingPointer(&text)
 	fmt.Println(text)
+
+	s := sumPointerReturn(1, 2, 3, 4)
+	fmt.Println("sum =", *s)
+
+	r := declareReturn(1, 2)
+	fmt.Println(r)
+
+	e, err := errorReturn(2.0, 0.0)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(e)
 }
 
 func sayMessage(message string, index int) {
@@ -28,4 +41,28 @@ func passingCopy(text string) {
 func passingPointer(text *string) {
 	*text = "change the original"
 	fmt.Println(*text)
+}
+
+func sumPointerReturn(values ...int) *int {
+	fmt.Println(values)
+	result := 0
+	for _, v := range values {
+		result += v
+	}
+
+	return &result
+}
+
+func declareReturn(values ...int) (result int) {
+	for _, v := range values {
+		result += v
+	}
+	return
+}
+
+func errorReturn(a, b float64) (float64, error) {
+	if b == 0.0 {
+		return 0.0, fmt.Errorf("Can't divide by zero")
+	}
+	return a / b, nil
 }
