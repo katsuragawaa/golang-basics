@@ -6,6 +6,7 @@ import (
 
 func main() {
 	var i interface{} = 0
+	// in go 1.8 "any" is an alias for empty interface
 
 	switch i.(type) {
 	case int:
