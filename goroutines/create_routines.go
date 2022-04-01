@@ -28,6 +28,7 @@ func badPractice() {
 		wg.Done()
 	}()
 	// race condition, reassign variable before routine print, so it'll say "bye"
+	// go run -race to check
 	msg = "bad bye"
 }
 
